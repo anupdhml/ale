@@ -8,7 +8,7 @@ function! ale_linters#tremor#tremor_language_server#GetCommand(buffer) abort
     " TODO will be useful to pass in args to the lang server
     "let l:executable = ale#Var(a:buffer, 'tremor_language_server_executable')
     "return ale#Escape(l:executable)
-    return '%e'
+    return '%e --backend tremor'
 endfunction
 
 function! ale_linters#tremor#tremor_language_server#GetProjectRoot(buffer) abort

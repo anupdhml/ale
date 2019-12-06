@@ -8,8 +8,7 @@ function! ale_linters#trickle#tremor_language_server#GetCommand(buffer) abort
     " TODO will be useful to pass in args to the lang server
     "let l:executable = ale#Var(a:buffer, 'tremor_language_server_executable')
     "return ale#Escape(l:executable)
-    " -q turns on tremor-query (trickle) support
-    return '%e -q'
+    return '%e --backend trickle'
 endfunction
 
 function! ale_linters#trickle#tremor_language_server#GetProjectRoot(buffer) abort
