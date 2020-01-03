@@ -1,14 +1,11 @@
-" Author: anupdhml <anupdhml+git@gmail.com>
+" Author: Anup Dhamala <anupdhml+git@gmail.com>
 " Description: A language server for tremor
 
 call ale#Set('tremor_language_server_executable', 'tremor-language-server')
 call ale#Set('tremor_language_server_config', {})
 
 function! ale_linters#tremor#tremor_language_server#GetCommand(buffer) abort
-    " TODO will be useful to pass in args to the lang server
-    "let l:executable = ale#Var(a:buffer, 'tremor_language_server_executable')
-    "return ale#Escape(l:executable)
-    return '%e --language tremor-script'
+    return '%e --language ' . &filetype
 endfunction
 
 function! ale_linters#tremor#tremor_language_server#GetProjectRoot(buffer) abort
@@ -17,8 +14,9 @@ endfunction
 
 call ale#linter#Define('tremor', {
 \   'name': 'tremor_language_server',
-\   'aliases': ['tremor-language-server'],
+\   'aliases': ['tremor-language-server', 'trill'],
 \   'lsp': 'stdio',
+\   'language': &filetype,
 \   'lsp_config': {b -> ale#Var(b, 'tremor_language_server_config')},
 \   'executable': {b -> ale#Var(b, 'tremor_language_server_executable')},
 \   'command': function('ale_linters#tremor#tremor_language_server#GetCommand'),
